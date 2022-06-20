@@ -1,0 +1,26 @@
+#Building a circuit that lights an LED when it is sufficiently dark in a room. Demonstrate the circuit by covering the photoresistor to simulate darkness.
+#Using Arduino UNO, Photoresistor, LED, Resistor(I use 1kΩ), and wires
+
+#code
+int LED = 13;
+  
+void setup() {
+  pinMode(LED, OUTPUT);
+  pinMode(A0, INPUT);
+  Serial.begin(9600);  //activate serial to read the resistor's input
+}
+
+  
+// the loop routine runs over and over again forever:
+void loop() {
+  int brightness = analogRead(A0);
+  Serial.println(brightness);     //to read the resistor's input
+  
+  if(brightness < 500){
+    digitalWrite(LED, HIGH);
+  } else{
+    digitalWrite(LED, LOW);
+  }
+  delay(500);
+} 
+
